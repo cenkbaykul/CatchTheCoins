@@ -1,0 +1,68 @@
+animations {
+  id: "player_up"
+  images {
+    image: "/assets/art/playerGrey_up1.png"
+  }
+  images {
+    image: "/assets/art/playerGrey_up2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 5
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "player_right"
+  images {
+    image: "/assets/art/playerGrey_walk1.png"
+  }
+  images {
+    image: "/assets/art/playerGrey_walk2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 5
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "enemy_walk"
+  images {
+    image: "/assets/art/enemyWalking_1.png"
+  }
+  images {
+    image: "/assets/art/enemyWalking_2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 4
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "enemy_swim"
+  images {
+    image: "/assets/art/enemySwimming_1.png"
+  }
+  images {
+    image: "/assets/art/enemySwimming_2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 5
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "enemy_fly"
+  images {
+    image: "/assets/art/enemyFlyingAlt_1.png"
+  }
+  images {
+    image: "/assets/art/enemyFlyingAlt_2.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 4
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+margin: 0
+extrude_borders: 0
+inner_padding: 0

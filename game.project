@@ -1,0 +1,14 @@
+[bootstrap]
+main_collection = /main/main.collectionc
+
+[script]
+shared_state = 1
+
+[project]
+title = Dodge
+dependencies = https://github.com/subsoap/defmath/archive/master.zip
+
+[display]
+width = 480
+height = 720
+
