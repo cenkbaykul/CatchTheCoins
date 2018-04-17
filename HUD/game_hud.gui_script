@@ -1,0 +1,30 @@
+local starting_score = 0
+local starting_level = 0
+
+function init(self)
+	self.score = starting_score
+	self.level = starting_level
+	self.press_text = gui.get_node("press_text")
+	self.game_state = false
+end
+
+function update(self, dt)
+	gui.set_enabled(self.press_text, not self.game_state)
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("score")then
+		self.score = self.score + message.val * 2
+		self.level = math.floor(message.level*50)
+		gui.set_text(gui.get_node("score_text"), "Score: "..tostring(self.score))
+		gui.set_text(gui.get_node("level_text"), "Level: "..tostring(self.level))
+	elseif message_id == hash("game_over")then
+		self.score = starting_score
+		self.level = starting_level
+		self.game_state = message.val
+		gui.set_text(gui.get_node("score_text"), "Score: "..tostring(self.score))
+		gui.set_text(gui.get_node("level_text"), "Level: "..tostring(self.level))
+	elseif message_id == hash("mode") then
+		self.game_state = message.val
+	end
+end
