@@ -1,0 +1,95 @@
+local defmath = require"defmath.defmath"
+local helper = require "main.helper"
+local screensize = helper.get_screensize(self)
+local player_start_position = vmath.vector3(240,300,0)
+local enemy_factory = "#enemy_factory"
+local player_factory = "#player_factory"
+local spawn_delay = 2.0
+local starting_score = 0.0
+local score_point = 1.0
+
+local function get_factory_position(self,seed)
+	math.randomseed(seed)
+	local factory_locations = {"factory_top","factory_bottom","factory_right","factory_left"}	
+	local center_pos = vmath.vector3(screensize.x*0.5,screensize.y*0.5,0)
+	local f_name = math.random(1,#factory_locations)
+	local pos = vmath.vector3()
+	local direction = vmath.vector3()
+	if factory_locations[f_name] == "factory_top" then
+		pos = vmath.vector3( math.random(32,screensize.x-32),screensize.y ,0)
+	elseif factory_locations[f_name] == "factory_bottom" then
+		pos = vmath.vector3( math.random(32,screensize.x-32),0 ,0)
+	elseif factory_locations[f_name] == "factory_right" then
+		pos = vmath.vector3( screensize.x, math.random(32,screensize.y-32) ,0)
+	elseif factory_locations[f_name] == "factory_left" then
+		pos = vmath.vector3( 0, math.random(32,screensize.y-32) ,0)		
+	end
+	direction = vmath.normalize(center_pos - pos) + vmath.vector3( math.random(-1,1), math.random(-1,1), 0)
+	return {pos,direction}
+end
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	msg.post("@render:", "clear_color", { color = vmath.vector4(71/256, 97/256, 140/256, 1 ) })
+	self.timer = 0.0
+	self.score = starting_score
+	self.enemy_factory_position = vmath.vector3()
+	--msg.post("@system:", "toggle_physics_debug")
+	self.is_player_alive = false
+	self.level = 0
+end
+
+function final(self)
+	msg.post(".", "release_input_focus")
+	self.score = starting_score
+end
+
+function update(self, dt)
+	-- Player respawn
+	if self.is_player_alive then
+		---Create enemy when player alive
+		local seed = helper.get_random_seed(self)
+		math.randomseed(seed)
+		self.timer = self.timer + dt
+		if self.timer > (spawn_delay - self.level) then 
+			self.timer = 0
+			local tval = get_factory_position(self, seed)
+			local direction = tval[2]
+			--select position for enemy factory
+			local pos = tval[1]
+			local enemy = factory.create(enemy_factory,pos,rot,{speed = math.random(150,250), direction=direction})
+			local url = msg.url(nil,enemy,"enemy")
+			go.set_scale(0.5,url)
+			if self.level <= 1.95 then self.level = self.level + 0.02
+			else self.level = 1.95 end
+		end
+		---End of enemy 
+		self.score = self.score + dt
+		if self.score > score_point then			
+			local rounded_score = math.floor(self.score)
+			msg.post("/HUD#game_hud", "score",{ val = rounded_score, level=self.level })
+			self.score = starting_score
+		end
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("game_over") then
+		self.is_player_alive = false
+		self.level = 0
+		msg.post("/HUD#game_hud", "game_over", {val = false}) -- reset score text and game_status
+	end
+end
+
+function on_input(self, action_id, action)
+	if action_id == hash("jump") and action.released and not self.is_player_alive then 
+		self.is_player_alive = true
+		local player = factory.create(player_factory,player_start_position)
+		local player_url = msg.url(nil,player,"Player")
+		go.set_scale(0.5,player_url)	
+		self.score = starting_score
+		msg.post("/HUD#game_hud", "mode", {val = true})
+	end
+
+	if action_id == hash("exit") then msg.post("@system:", "exit",{code = 0}) end
+end

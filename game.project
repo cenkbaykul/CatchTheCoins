@@ -5,10 +5,11 @@ main_collection = /main/main.collectionc
 shared_state = 1
 
 [project]
-title = Dodge
+title = Defold_Dodge
 dependencies = https://github.com/subsoap/defmath/archive/master.zip
 
 [display]
 width = 480
 height = 720
+high_dpi = 1
 
