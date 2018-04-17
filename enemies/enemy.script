@@ -1,0 +1,37 @@
+go.property("speed", 0)
+go.property("direction", vmath.vector3())
+
+local defmath = require"defmath.defmath"
+local helper = require "main.helper"
+local screensize = helper.get_screensize(self)
+local enemy_types = {"enemy_walk","enemy_swim","enemy_fly"}
+
+function init(self)
+	local seed = helper.get_random_seed(self)
+	math.randomseed(seed)
+	msg.post("#sprite", "play_animation",{ id = hash( enemy_types[math.random(1,#enemy_types)] )})
+end
+
+function update(self, dt)	
+	local vel = vmath.normalize(self.direction) * self.speed
+	local angle = math.atan2(self.direction.y, self.direction.x)
+	local rot = vmath.quat_rotation_z(angle)
+	go.set_rotation(rot)
+
+	local pos = go.get_position()	
+	if pos.x > screensize.x +32 or pos.x < -32 then
+		go.delete()
+	elseif pos.y < -32 or pos.y > screensize.y + 32 then
+		go.delete()
+	end
+	pos = pos + vel * dt
+	go.set_position(pos)	
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("collision_response") then 
+		if message.group == hash("player") then
+			go.delete()
+		end
+	end
+end
