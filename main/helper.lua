@@ -16,7 +16,8 @@ function M.get_screensize()
 end
 
 function M.get_random_seed()
-	return os.clock() + math.sin(0.5) / math.random()
+	math.randomseed(os.time())
+	math.random(); math.random(); math.random(); math.random(); math.random()
 end
 
 return M

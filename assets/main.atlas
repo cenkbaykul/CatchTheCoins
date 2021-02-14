@@ -2,9 +2,11 @@ animations {
   id: "player_up"
   images {
     image: "/assets/art/playerGrey_up1.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
   }
   images {
     image: "/assets/art/playerGrey_up2.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
   }
   playback: PLAYBACK_LOOP_FORWARD
   fps: 5
@@ -15,9 +17,11 @@ animations {
   id: "player_right"
   images {
     image: "/assets/art/playerGrey_walk1.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
   }
   images {
     image: "/assets/art/playerGrey_walk2.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
   }
   playback: PLAYBACK_LOOP_FORWARD
   fps: 5
@@ -28,9 +32,11 @@ animations {
   id: "enemy_walk"
   images {
     image: "/assets/art/enemyWalking_1.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
   }
   images {
     image: "/assets/art/enemyWalking_2.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
   }
   playback: PLAYBACK_LOOP_FORWARD
   fps: 4
@@ -41,9 +47,11 @@ animations {
   id: "enemy_swim"
   images {
     image: "/assets/art/enemySwimming_1.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
   }
   images {
     image: "/assets/art/enemySwimming_2.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
   }
   playback: PLAYBACK_LOOP_FORWARD
   fps: 5
@@ -54,12 +62,65 @@ animations {
   id: "enemy_fly"
   images {
     image: "/assets/art/enemyFlyingAlt_1.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
   }
   images {
     image: "/assets/art/enemyFlyingAlt_2.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
   }
   playback: PLAYBACK_LOOP_FORWARD
   fps: 4
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "coins_anim"
+  images {
+    image: "/assets/art/coin/coin-frame-1.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/art/coin/coin-frame-10.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/art/coin/coin-frame-11.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/art/coin/coin-frame-2.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/art/coin/coin-frame-3.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/art/coin/coin-frame-4.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/art/coin/coin-frame-5.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/art/coin/coin-frame-6.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/art/coin/coin-frame-7.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/art/coin/coin-frame-8.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/art/coin/coin-frame-9.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 12
   flip_horizontal: 0
   flip_vertical: 0
 }

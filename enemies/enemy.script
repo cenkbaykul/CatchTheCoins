@@ -1,14 +1,12 @@
 go.property("speed", 0)
 go.property("direction", vmath.vector3())
 
-local defmath = require"defmath.defmath"
 local helper = require "main.helper"
-
 local screensize = helper.get_screensize()
 local enemy_types = {"enemy_walk","enemy_swim","enemy_fly"}
 
 function init(self)
-	math.randomseed(helper.get_random_seed())
+	helper.get_random_seed()
 	msg.post("#sprite", "play_animation",{ id = hash( enemy_types[math.random(1,#enemy_types)] )})
 	go.set("#sprite", "tint", vmath.vector4(math.random(),math.random(),math.random(),1))
 end

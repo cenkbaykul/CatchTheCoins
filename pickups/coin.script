@@ -1,0 +1,20 @@
+local helper = require "main.helper"
+
+function init(self)
+	helper.get_random_seed()
+	local alive_timer = math.random(5,12)
+	timer.delay(alive_timer, false, function() go.delete() end)
+end
+
+function final(self)
+	msg.post("/HUD#game_hud", "score")
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("trigger_response") then
+		if message.other_group == hash("player") and message.enter then
+			go.animate("#sprite", "scale", go.PLAYBACK_ONCE_FORWARD, vmath.vector3(2, 2, 2), go.EASING_LINEAR, 0.2)
+			go.animate("#sprite", "tint.w", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_LINEAR, 0.2, 0, function() go.delete() end)
+		end
+	end
+end

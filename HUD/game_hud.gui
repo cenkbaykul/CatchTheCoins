@@ -42,7 +42,7 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "Score:0"
+  text: "Score: 0"
   font: "Xolonium-Regular"
   id: "score_text"
   xanchor: XANCHOR_NONE
@@ -167,7 +167,7 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "Level:0"
+  text: "Level: 0"
   font: "Xolonium-Regular"
   id: "level_text"
   xanchor: XANCHOR_NONE

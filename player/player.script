@@ -5,17 +5,18 @@ local screensize = helper.get_screensize()
 local move_speed = 400
 
 local function play_animation(self, animation)
-	if self.current_animation ~= animation then
-		self.current_animation = animation
-		msg.post("#sprite", "play_animation", { id = animation })
+	if self.current_animation == animation then
+		return
 	end
+	self.current_animation = animation
+	msg.post("#sprite", "play_animation", { id = animation })
 end
 
 function blink_anim()
 	local counter = 0
 	repeat
-		go.animate("#sprite", "tint", go.PLAYBACK_ONCE_PINGPONG, vmath.vector4(1, 1, 1, 0,1), go.EASING_OUTSINE, 0.2,0,	function() return counter + 1 end)
-	until counter < 2
+		go.animate("#sprite", "tint", go.PLAYBACK_ONCE_PINGPONG, vmath.vector4(1, 1, 1, 0.1), go.EASING_OUTSINE, 0.2,0,	function() return counter + 1 end)
+	until counter < 3
 end
 
 function init(self)
@@ -23,10 +24,12 @@ function init(self)
 	self.velocity = vmath.vector3()
 	self.actions = {}
 	self.current_animation = nil
-	go.animate("#sprite", "tint", go.PLAYBACK_ONCE_PINGPONG, vmath.vector4(1, 1, 1, 0,1), go.EASING_OUTSINE, 0.5, 0.0, blink_anim)
+	go.animate("#sprite", "tint", go.PLAYBACK_ONCE_PINGPONG, vmath.vector4(1, 1, 1, 0.1), go.EASING_OUTSINE, 0.5, 0.0, blink_anim)
 end
 
-function final(self) msg.post(".", "release_input_focus") end
+function final(self)
+	msg.post(".", "release_input_focus")
+end
 
 function update(self, dt)
 	self.velocity = vmath.vector3()
