@@ -5,7 +5,7 @@ main_collection = /main/main.collectionc
 shared_state = 1
 
 [project]
-title = Defold_Dodge
+title = Catch the Coins
 dependencies = https://github.com/subsoap/defmath/archive/master.zip
 
 [display]
