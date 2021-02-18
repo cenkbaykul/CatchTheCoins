@@ -1,13 +1,11 @@
-# Welcome to Defold
+# Sample game project for Defold engine
 
-This project was created from the "empty" project template.
+[Documentation](https://www.defold.com/manuals/introduction/)
 
-The settings in ["game.project"](defold://open?path=/game.project) are all the default. A bootstrap empty ["main.collection"](defold://open?path=/main/main.collection) is included.
+[API](https://www.defold.com/ref/go/)
 
-Check out [the documentation pages](https://defold.com/learn) for examples, tutorials, manuals and API docs.
+[Examples](https://www.defold.com/examples/basics/simple_move/)
 
-If you run into trouble, help is available in [our forum](https://forum.defold.com).
+[britzl public examples](http://britzl.github.io/publicexamples/)
 
-Happy Defolding!
-
----
+[forum](https://forum.defold.com)
